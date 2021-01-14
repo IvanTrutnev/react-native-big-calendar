@@ -126,6 +126,7 @@ export const Calendar = React.memo(
       dateRange,
       style,
       isRTL,
+      mode,
     }
 
     return (
@@ -134,6 +135,12 @@ export const Calendar = React.memo(
           {...commonProps}
           allDayEvents={allDayEvents}
           onPressDateHeader={onPressDateHeader}
+          onAddDate={() => {
+            setTargetDate(targetDate.add(modeToNum(mode), 'day'))
+          }}
+          onMinusDate={() => {
+            setTargetDate(targetDate.add(modeToNum(mode) * -1, 'day'))
+          }}
         />
         <CalendarBody
           {...commonProps}

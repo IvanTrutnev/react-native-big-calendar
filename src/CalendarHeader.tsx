@@ -11,8 +11,11 @@ interface CalendarHeaderProps<T> {
   cellHeight: number
   style: ViewStyle
   allDayEvents: Event<T>[]
-  isRTL:boolean
+  isRTL: boolean
   onPressDateHeader?: (date: Date) => void
+  onMinusDate?: (date: Date) => void
+  onAddDate?: (date: Date) => void
+  mode: string
 }
 
 export const CalendarHeader = React.memo(
@@ -23,6 +26,9 @@ export const CalendarHeader = React.memo(
     allDayEvents,
     isRTL,
     onPressDateHeader,
+    onAddDate,
+    onMinusDate,
+    mode,
   }: CalendarHeaderProps<any>) => {
     const _onPress = React.useCallback(
       (date: Date) => {
@@ -32,7 +38,7 @@ export const CalendarHeader = React.memo(
     )
 
     return (
-      <View style={[isRTL?styles.containerRTL:styles.container, style]}>
+      <View style={[isRTL ? styles.containerRTL : styles.container, style]}>
         <View style={[commonStyles.hourGuide, styles.hourGuideSpacer]} />
         {dateRange.map((date) => {
           const _isToday = isToday(date)
@@ -45,7 +51,7 @@ export const CalendarHeader = React.memo(
             >
               <View style={{ height: cellHeight, justifyContent: 'space-between' }}>
                 <Text style={[commonStyles.guideText, _isToday && { color: Color.primary }]}>
-                  {date.format('ddd')}
+                  {date.format('YYYY-MM-DD')}
                 </Text>
                 <View style={_isToday && styles.todayWrap}>
                   <Text style={[styles.dateText, _isToday && { color: '#fff' }]}>
@@ -53,6 +59,12 @@ export const CalendarHeader = React.memo(
                   </Text>
                 </View>
               </View>
+              {mode === 'day' && (
+                <>
+                  <Text onPress={onMinusDate}>before</Text>
+                  <Text onPress={onAddDate}>after</Text>
+                </>
+              )}
               <View style={[commonStyles.dateCell, { height: cellHeight }]}>
                 {allDayEvents.map((event) => {
                   if (!event.start.isSame(date, 'day')) {
@@ -79,7 +91,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#eee',
     borderBottomWidth: 1,
   },
-  containerRTL:{
+  containerRTL: {
     flexDirection: 'row-reverse',
     borderBottomColor: '#eee',
     borderBottomWidth: 1,
