@@ -1,12 +1,12 @@
 {
-  "name": "react-native-big-calendar",
+  "name": "react-native-week-calendar",
   "version": "0.7.2",
   "main": "build/index.js",
   "jsnext:main": "build/index.es.js",
   "module": "build/index.es.js",
   "types": "build/index.d.ts",
-  "repository": "git@github.com:llotheo/react-native-big-calendar",
-  "author": "gosho-kazuya <ketsume0211@gmail.com>",
+  "repository": "git@github.com:IvanTrutnev/react-native-big-calendar",
+  "author": "IvanTrutnev <trutnev_1996@mail.ru>",
   "license": "MIT",
   "scripts": {
     "storybook": "start-storybook -p 7007",
@@ -27,7 +27,7 @@
   },
   "peerDependencies": {
     "react": "^16.8.3",
-    "react-native": "^0.59.0"
+    "react-native": "0.63.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
