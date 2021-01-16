@@ -26,8 +26,6 @@ export const CalendarHeader = React.memo(
     allDayEvents,
     isRTL,
     onPressDateHeader,
-    onAddDate,
-    onMinusDate,
     mode,
   }: CalendarHeaderProps<any>) => {
     const _onPress = React.useCallback(
@@ -39,47 +37,62 @@ export const CalendarHeader = React.memo(
 
     return (
       <View style={[isRTL ? styles.containerRTL : styles.container, style]}>
-        <View style={[commonStyles.hourGuide, styles.hourGuideSpacer]} />
-        {dateRange.map((date) => {
-          const _isToday = isToday(date)
-          return (
-            <TouchableOpacity
-              style={{ flex: 1, paddingTop: 2 }}
-              onPress={() => _onPress(date.toDate())}
-              disabled={onPressDateHeader === undefined}
-              key={date.toString()}
-            >
-              <View style={{ height: cellHeight, justifyContent: 'space-between' }}>
-                <Text style={[commonStyles.guideText, _isToday && { color: Color.primary }]}>
-                  {date.format('YYYY-MM-DD')}
-                </Text>
-                <View style={_isToday && styles.todayWrap}>
-                  <Text style={[styles.dateText, _isToday && { color: '#fff' }]}>
-                    {date.format('D')}
-                  </Text>
+        {mode !== 'day' && <View style={[commonStyles.hourGuide, styles.hourGuideSpacer]} />}
+        {mode === 'day' && (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 48,
+            }}
+          >
+            <Text style={{ fontSize: 18, fontWeight: '700', color: '#2E3758' }}>
+              {dateRange[0].format('MMMM D, YYYY')}
+            </Text>
+          </View>
+        )}
+        {mode !== 'day' &&
+          dateRange.map((date) => {
+            const _isToday = isToday(date)
+            return (
+              <TouchableOpacity
+                style={{ flex: 1, paddingTop: 2 }}
+                onPress={() => _onPress(date.toDate())}
+                disabled={onPressDateHeader === undefined}
+                key={date.toString()}
+              >
+                <View style={{ height: cellHeight, justifyContent: 'space-between' }}>
+                  {/* <Text style={[commonStyles.guideText, _isToday && { color: Color.primary }]}>
+                  {mode === '3days' ? date.format('ddd MMM D') : date.format('D')}
+                </Text> */}
+                  <View style={[styles.wrap, _isToday === false && { backgroundColor: '#fff' }]}>
+                    <Text style={[styles.dateText, _isToday && { color: '#fff' }]}>
+                      {mode === '3days' ? date.format('ddd D MMM') : date.format('D')}
+                    </Text>
+                  </View>
                 </View>
-              </View>
-              {mode === 'day' && (
+                {/* {(
                 <>
                   <Text onPress={onMinusDate}>before</Text>
                   <Text onPress={onAddDate}>after</Text>
                 </>
-              )}
-              <View style={[commonStyles.dateCell, { height: cellHeight }]}>
-                {allDayEvents.map((event) => {
-                  if (!event.start.isSame(date, 'day')) {
-                    return null
-                  }
-                  return (
-                    <View style={commonStyles.eventCell}>
-                      <Text style={commonStyles.eventTitle}>{event.title}</Text>
-                    </View>
-                  )
-                })}
-              </View>
-            </TouchableOpacity>
-          )
-        })}
+              )} */}
+                <View style={[commonStyles.dateCell, { height: cellHeight }]}>
+                  {allDayEvents.map((event) => {
+                    if (!event.start.isSame(date, 'day')) {
+                      return null
+                    }
+                    return (
+                      <View style={commonStyles.eventCell}>
+                        <Text style={commonStyles.eventTitle}>{event.title}</Text>
+                      </View>
+                    )
+                  })}
+                </View>
+              </TouchableOpacity>
+            )
+          })}
       </View>
     )
   },
@@ -98,14 +111,15 @@ const styles = StyleSheet.create({
   },
   dateText: {
     color: '#444',
-    fontSize: 22,
+    fontSize: 12,
     textAlign: 'center',
     marginTop: 6,
   },
-  todayWrap: {
+  wrap: {
     backgroundColor: Color.primary,
-    width: 36,
-    height: 36,
+    //width: 36,
+    //height: 36,
+    paddingHorizontal: 10,
     borderRadius: 50,
     marginTop: 6,
     paddingBottom: 4,

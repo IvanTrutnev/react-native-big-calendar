@@ -22,6 +22,7 @@ export const commonStyles = StyleSheet.create({
     backgroundColor: '#fff',
     zIndex: 1000,
     width: HOUR_GUIDE_WIDTH,
+    paddingTop: 20,
   },
   eventCell: {
     position: 'absolute' as const,
