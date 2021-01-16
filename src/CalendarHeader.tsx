@@ -13,8 +13,8 @@ interface CalendarHeaderProps<T> {
   allDayEvents: Event<T>[]
   isRTL: boolean
   onPressDateHeader?: (date: Date) => void
-  onMinusDate?: (date: Date) => void
-  onAddDate?: (date: Date) => void
+  onMinusDate?: any
+  onAddDate?: any
   mode: string
 }
 
