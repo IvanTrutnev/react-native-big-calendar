@@ -27,6 +27,7 @@ storiesOf('Mobile', module)
         events={events}
         mode="day"
         onPressEvent={(event) => alert(event.title)}
+        ampm
       />
     </View>
   ))
@@ -38,6 +39,7 @@ storiesOf('Mobile', module)
         events={events}
         mode="3days"
         onPressEvent={(event) => alert(event.title)}
+        ampm
       />
     </View>
   ))

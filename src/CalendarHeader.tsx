@@ -78,7 +78,7 @@ export const CalendarHeader = React.memo(
                   <Text onPress={onAddDate}>after</Text>
                 </>
               )} */}
-                <View style={[commonStyles.dateCell, { height: cellHeight }]}>
+                {/* <View style={[commonStyles.dateCell, { height: cellHeight }]}>
                   {allDayEvents.map((event) => {
                     if (!event.start.isSame(date, 'day')) {
                       return null
@@ -89,7 +89,7 @@ export const CalendarHeader = React.memo(
                       </View>
                     )
                   })}
-                </View>
+                </View> */}
               </TouchableOpacity>
             )
           })}

@@ -1,5 +1,5 @@
 {
-  "name": "react-native-week-calendar",
+  "name": "react-native-big-calendar-forked",
   "version": "0.7.2",
   "main": "build/index.js",
   "jsnext:main": "build/index.es.js",

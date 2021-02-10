@@ -1,6 +1,6 @@
 ## Thank you
 
-First off, thanks for your interest in `react-native-big-calendar` and for wanting to contribute!
+First off, thanks for your interest in `react-native-big-calendar-forked` and for wanting to contribute!
 
 ## Installation
 
@@ -10,7 +10,7 @@ After cheking out the repo, to install:
 yarn install
 ```
 
-And confirm that you can successfully build `react-native-big-calendar`:
+And confirm that you can successfully build `react-native-big-calendar-forked`:
 
 ```
 yarn build
