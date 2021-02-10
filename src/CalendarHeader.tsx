@@ -78,18 +78,14 @@ export const CalendarHeader = React.memo(
                   <Text onPress={onAddDate}>after</Text>
                 </>
               )} */}
-                {/* <View style={[commonStyles.dateCell, { height: cellHeight }]}>
+                <View>
                   {allDayEvents.map((event) => {
                     if (!event.start.isSame(date, 'day')) {
                       return null
                     }
-                    return (
-                      <View style={commonStyles.eventCell}>
-                        <Text style={commonStyles.eventTitle}>{event.title}</Text>
-                      </View>
-                    )
+                    return <View />
                   })}
-                </View> */}
+                </View>
               </TouchableOpacity>
             )
           })}
