@@ -187,9 +187,9 @@ export const CalendarBody = React.memo(
                 .filter(({ start }) =>
                   start.isBetween(date.startOf('day'), date.endOf('day'), null, '[)'),
                 )
-                .map((event) => (
+                .map((event, index) => (
                   <CalendarEvent
-                    key={`${event.start}${event.title}`}
+                    key={`${event.start}${event.title}${event.end}${index}`}
                     event={event}
                     onPressEvent={onPressEvent}
                     eventCellStyle={eventCellStyle}

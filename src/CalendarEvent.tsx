@@ -83,6 +83,6 @@ export const CalendarEvent = React.memo(
 const styles = StyleSheet.create({
   eventTime: {
     color: '#fff',
-    fontSize: 10,
+    fontSize: 14,
   },
 })
